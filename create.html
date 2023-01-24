@@ -16,7 +16,7 @@
         <div class="card">
             <h5 class="card-header bg-dark text-light">Create Product Data</h5>
             <div class="card-body">
-                <form id="form" >
+                <form id="form" onsubmit="createData()" >
                     <div class="form-group mb-3">
                       <label for="productID" class="form-label">Product ID</label>
                       <input required type="text" class="form-control" id="productID" aria-describedby="emailHelp">
@@ -34,7 +34,7 @@
                       <input required type="text" class="form-control" id="customerName">
                     </div>
                     <div class="d-grid gap-2">
-                        <button id="submitButton" type="submit" class="btn btn-outline-dark rounded-5">Submit</button>
+                        <button id="submitButton"  type="submit" class="btn btn-outline-dark rounded-5">Submit</button>
                     </div>
                   </form>
 

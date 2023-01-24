@@ -20,8 +20,12 @@ $(document).ready(function () {
                             tr.append(td7);
                         }
                     });
-                    // let td8 = $(`<td><button class="btn btn-info" onclick="${viewData(product.id)}">View</button>`)
-                    // tr.append(td8)
+
+                    let td8 = $(`<td>
+                     <button class="btn btn-info" onclick="">View</button>
+                     <button class="btn btn-warning" onclick="">Edit</button>
+                    `)
+                    tr.append(td8)
                     $("#table").append(tr);
                 });
 
@@ -62,6 +66,28 @@ $(document).ready(function () {
                         }
                     });
                 }
+
+                function editData(id) {
+                    products.data.forEach(function(product) {
+                        if (product.id === id) {
+                            // fill the form fields with the selected data
+                            $("#productID").val(product.productID);
+                            $("#productName").val(product.productName);
+                            $("#amount").val(product.amount);
+                            $("#customerName").val(product.customerName);
+                            $("#status").val(product.status);
+                            $("#transactionDate").val(product.transactionDate);
+                            $("#createBy").val(product.createBy);
+
+                            
+                            alert("Data has been successfully created!"); 
+                            window.location.href = "index.html"; 
+                          
+                        }
+                    });
+                }
+
+
             });
 
 });
