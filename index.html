@@ -11,7 +11,10 @@
     <h1 class="text-center my-3"> JSON Data </h1>
 
     <div class="container">
-        <a class="btn btn-outline-dark my-2" href="create.html" role="button">+ Add New Data</a>
+        <button type="button" class="btn btn-outline-dark my-2" data-bs-toggle="modal" data-bs-target="#createFormModal">
+            + Add New Data
+           </button>
+        <!-- <a class="btn btn-outline-dark my-2" href="create.html" role="button">+ Add New Data</a> -->
         <table class="table table-bordered table-responsive" >
             <thead class="table-dark text-center">
                 <tr>
@@ -30,8 +33,47 @@
            
         </table>
     </div>
+
+  <!-- Create Form Modal -->
+  <div class="modal fade" id="createFormModal" tabindex="-1" aria-labelledby="createFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-light">
+          <h5 class="modal-title" id="createFormModalLabel">Create Product Data</h5>
+          <button type="button" class="btn-close text-bg-danger text-white btn btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="form"  >
+                <div class="form-group mb-3">
+                  <label for="productID" class="form-label">Product ID</label>
+                  <input required type="text" class="form-control" id="productID" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="productName" class="form-label">Product Name</label>
+                  <input required type="text" class="form-control" id="productName">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input required type="number" class="form-control" id="amount">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="customerName" class="form-label">Customer Name</label>
+                  <input required type="text" class="form-control" id="customerName">
+                </div>
+                <div class="d-grid gap-2">
+                    <button id="submitButton"  type="submit" class="btn btn-outline-dark rounded-5">Submit</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>\
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
 </body>
 </html>

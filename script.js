@@ -2,39 +2,45 @@ $(document).ready(function () {
   
     $.getJSON("viewData.json", 
             function (products) {
-
-                products.data.forEach(function(product) {
-                    let tr = $("<tr>");
-                    let td1 = $("<td>").text(product.id);
-                    let td2 = $("<td>").text(product.productID);
-                    let td3 = $("<td>").text(product.productName);
-                    let td4 = $("<td>").text(product.amount);
-                    let td5 = $("<td>").text(product.customerName);
-                    let td6 = $("<td>").text(product.transactionDate);
-                
-
-                    tr.append(td1, td2, td3, td4, td5, td6);
-                    products.status.forEach(function(status) {
-                        if (status.id === product.status) {
-                            let td7 = $("<td>").text(status.name);
-                            tr.append(td7);
-                        }
-                    });
-
-                    let td8 = $(`<td>
-                     <button class="btn btn-info" onclick="">View</button>
-                     <button class="btn btn-warning" onclick="">Edit</button>
-                    `)
-                    tr.append(td8)
-                    $("#table").append(tr);
-                });
-
-                function createData(newData) {
-                   
-                    products.data.push(newData);
+                let productData = {
+                    data: products.data,
+                    status: products.status
                 }
 
-                
+                function getAllData() {
+                    productData.data.forEach(function(product) {
+                        let tr = $("<tr>");
+                        let td1 = $("<td>").text(product.id);
+                        let td2 = $("<td>").text(product.productID);
+                        let td3 = $("<td>").text(product.productName);
+                        let td4 = $("<td>").text(product.amount);
+                        let td5 = $("<td>").text(product.customerName);
+                        let td6 = $("<td>").text(product.transactionDate);
+                        tr.append(td1, td2, td3, td4, td5, td6);
+                        productData.status.forEach(function(status) {
+                            if (status.id === product.status) {
+                                let td7 = $("<td>").text(status.name);
+                                tr.append(td7);
+                            }
+                        });
+    
+                        let td8 = $(`<td>
+                         <button class="btn btn-info" onclick="">View</button>
+                         <button class="btn btn-warning" onclick="">Edit</button>
+                        `)
+                        tr.append(td8)
+                        $("#table").append(tr);
+
+                    });
+                }
+                getAllData()
+                function createData(newData) {
+                    productData.data.push(newData);
+                    console.log(productData.data);
+                    $('#createFormModal').modal('hide');
+                    getAllData()
+                   
+                }
                 $("#form").submit(function(event) {
                     event.preventDefault(); 
                     let newData = {};
@@ -43,20 +49,17 @@ $(document).ready(function () {
                     newData.productName = $("#productName").val();
                     newData.amount = $("#amount").val();
                     newData.customerName = $("#customerName").val();
-                    newData.status = 1;
+                    newData.status = 0;
                     newData.transactionDate = new Date().toJSON();
                     newData.createBy = "xyz";
                     newData.createOn = new Date().toJSON();
                     
                     createData(newData); 
-                    if (newData != null) {
-                        alert("Data has been successfully created!"); 
-                        window.location.href = "index.html"; 
-                    }
+                  
                 });
                 
                 function viewData(id) {
-                    products.data.forEach(function(product) {
+                    productData.data.forEach(function(product) {
                         if (product.id === id) {
                             // display the selected data
                             console.log("Selected data: ", product);
@@ -68,7 +71,7 @@ $(document).ready(function () {
                 }
 
                 function editData(id) {
-                    products.data.forEach(function(product) {
+                    productData.data.forEach(function(product) {
                         if (product.id === id) {
                             // fill the form fields with the selected data
                             $("#productID").val(product.productID);
@@ -80,7 +83,7 @@ $(document).ready(function () {
                             $("#createBy").val(product.createBy);
 
                             
-                            alert("Data has been successfully created!"); 
+                            alert("Data has been successfully updated!"); 
                             window.location.href = "index.html"; 
                           
                         }
