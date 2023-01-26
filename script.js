@@ -58,7 +58,7 @@ $(document).ready(function () {
         let data = products.data
         let selectedData = data.find((product) => product.id == id);
          
-        $("#viewDetailFormModalLabel").append(id)
+        $("#viewDetailFormModalLabel").html(`View Data: ID ${id}`)
         $("#viewproductID").val(selectedData.productID)
         $("#viewproductName").val(selectedData.productName)
         $("#viewamount").val(selectedData.amount)
