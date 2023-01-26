@@ -69,6 +69,43 @@
     </div>
   </div> 
 
+  <!-- Edit Data Modal -->
+  <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-light">
+          <h5 class="modal-title" id="editDataFormModalLabel">Edit Data: ID </h5>
+          <button type="button" class="btn-close text-bg-danger text-white btn btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="viewDetailform">
+                <div class="form-group mb-3">
+                  <label for="productID" class="form-label">Product ID</label>
+                  <input  type="text" class="form-control" id="editproductID">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="productName" class="form-label">Product Name</label>
+                  <input  type="text" class="form-control" id="editproductName">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input  type="number" class="form-control" id="editamount">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="customerName" class="form-label">Customer Name</label>
+                  <input  type="text" class="form-control" id="editcustomerName">
+                </div>
+
+                <div class="d-grid gap-2">
+                  <button id="updateButton"  type="submit" class="btn btn-outline-dark rounded-5">Update Data</button>
+              </div>
+           
+              </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+
   <!-- View Detail Modal -->
   <div class="modal fade" id="viewDetailModal" tabindex="-1" aria-labelledby="viewDetailModal" aria-hidden="true">
     <div class="modal-dialog">

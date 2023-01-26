@@ -24,7 +24,7 @@ $(document).ready(function () {
 
         let td8 = $(`<td>
                         <button class="btn btn-info" id="viewBtn">View</button>
-                         <button class="btn btn-warning" onclick="">Edit</button>
+                         <button class="btn btn-warning" id="editBtn">Edit</button>
                         `);
         tr.append(td8);
         $("#table").append(tr);
@@ -78,21 +78,21 @@ $(document).ready(function () {
   });
 
     function editData(id) {
-      productData.data.forEach(function (product) {
-        if (product.id === id) {
-          // fill the form fields with the selected data
-          $("#productID").val(product.productID);
-          $("#productName").val(product.productName);
-          $("#amount").val(product.amount);
-          $("#customerName").val(product.customerName);
-          $("#status").val(product.status);
-          $("#transactionDate").val(product.transactionDate);
-          $("#createBy").val(product.createBy);
+      let data = products.data
+      let selectedData = data.find((product) => product.id == id);
 
-          alert("Data has been successfully updated!");
-          window.location.href = "index.html";
-        }
-      });
+      $("#editDataFormModalLabel").html(`Edit Data: ID ${id}`)
+      $("#editproductID").val(selectedData.productID)
+      $("#editproductName").val(selectedData.productName)
+      $("#editamount").val(selectedData.amount)
+      $("#editcustomerName").val(selectedData.customerName)
+     
+      $("#editDataModal").modal("show");
     }
+
+    $("#table").on("click", "#editBtn", function () {
+      let id = $(this).closest("tr").find("td:first").text();
+      editData(id);
+  });
   });
 });
