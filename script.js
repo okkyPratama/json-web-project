@@ -69,13 +69,13 @@ $(document).ready(function () {
         $("#viewcreateOn").val(selectedData.createOn)
 
         $("#viewDetailModal").modal("show");
-        // console.log("Selected data: ", selectedData);
 
     }
-    $("#viewBtn").click(function () {
-        let id = $(this).closest("tr").find("td:first").text();
-        getDataById(id);
-    });
+
+    $("#table").on("click", "#viewBtn", function () {
+      let id = $(this).closest("tr").find("td:first").text();
+      getDataById(id);
+  });
 
     function editData(id) {
       productData.data.forEach(function (product) {
