@@ -55,20 +55,26 @@ $(document).ready(function () {
     });
 
     function getDataById(id) {
-      productData.data.forEach(function (product) {
-        if (product.id === id) {
-          console.log("Selected data: ", product);
-          alert("Selected data: " + JSON.stringify(product));
-        }
-      });
+        let data = products.data
+        let selectedData = data.find((product) => product.id == id);
+         
+        $("#viewDetailFormModalLabel").append(id)
+        $("#viewproductID").val(selectedData.productID)
+        $("#viewproductName").val(selectedData.productName)
+        $("#viewamount").val(selectedData.amount)
+        $("#viewcustomerName").val(selectedData.customerName)
+        $("#viewstatus").val(selectedData.status ? "FAILED" : 'SUCCESS')
+        $("#viewtransactionDate").val(selectedData.transactionDate)
+        $("#viewcreateBy").val(selectedData.createBy)
+        $("#viewcreateOn").val(selectedData.createOn)
+
+        $("#viewDetailModal").modal("show");
+        // console.log("Selected data: ", selectedData);
+
     }
     $("#viewBtn").click(function () {
-      let data = products.data
-      let id = $(this).closest("tr").find("td:first").text();
-
-      let selectedData = data.find((product) => product.id == id);
-      console.log("Selected data: ", selectedData);
-      alert("Selected data: " + JSON.stringify(selectedData));
+        let id = $(this).closest("tr").find("td:first").text();
+        getDataById(id);
     });
 
     function editData(id) {
