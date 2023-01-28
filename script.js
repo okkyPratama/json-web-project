@@ -70,6 +70,7 @@ $(document).ready(function () {
 
         $("#viewDetailModal").modal("show");
 
+
     }
 
     $("#table").on("click", "#viewBtn", function () {
@@ -80,6 +81,8 @@ $(document).ready(function () {
     function editData(id) {
       let data = products.data
       let selectedData = data.find((product) => product.id == id);
+      
+      $("#editDataModal").modal("show");
 
       $("#editDataFormModalLabel").html(`Edit Data: ID ${id}`)
       $("#editproductID").val(selectedData.productID)
@@ -87,9 +90,38 @@ $(document).ready(function () {
       $("#editamount").val(selectedData.amount)
       $("#editcustomerName").val(selectedData.customerName)
      
-      $("#editDataModal").modal("show");
+      $("#editDataform").submit(function(event){
+        event.preventDefault()
+        let updatedData = {
+          productID: $("#editproductID").val(),
+          productName: $("#editproductName").val(),
+          amount: $("#editamount").val(),
+          customerName: $("#editcustomerName").val()
+        }
+  
+        let selectedIndex = productData.data.findIndex(
+           (product) => product.id == selectedData.id
+        )
+  
+        productData.data[selectedIndex] = { ...productData.data[selectedIndex], ...updatedData}
+    
+        $.ajax({
+          type: "PUT",
+          url: "viewData.json",
+          data: JSON.stringify(selectedData),
+          success: function(){
+              console.log("Data updated successfully!");
+          }
+      });
+  
+      console.log("form has been submitted")
+        $("#editDataModal").modal("hide");
+        getAllData();
+      })
+
     }
 
+    
     $("#table").on("click", "#editBtn", function () {
       let id = $(this).closest("tr").find("td:first").text();
       editData(id);
