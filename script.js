@@ -6,6 +6,8 @@ $(document).ready(function () {
     };
 
     function getAllData() {
+      $("#table").empty();
+
       productData.data.forEach(function (product) {
         let tr = $("<tr>");
         let td1 = $("<td>").text(product.id);
@@ -90,7 +92,8 @@ $(document).ready(function () {
       $("#editamount").val(selectedData.amount)
       $("#editcustomerName").val(selectedData.customerName)
      
-      $("#editDataform").submit(function(event){
+      
+      $("#editDataform").submit(function submitHandler(event){
         event.preventDefault()
         let updatedData = {
           productID: $("#editproductID").val(),
@@ -116,9 +119,10 @@ $(document).ready(function () {
   
       console.log("form has been submitted")
         $("#editDataModal").modal("hide");
-        getAllData();
-      })
 
+        getAllData();
+        $("#editDataform").off("submit",submitHandler)
+      })
     }
 
     
